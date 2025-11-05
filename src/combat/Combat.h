@@ -4,20 +4,20 @@
 #include "character/Character.h"
 #include <iostream>
 
-class Combat {
-private:
+struct Combat {
     Character* player;
     Character* enemy;
     int turnCount;
-public:
-    Combat(Character* p, Character* e);
-    
-    void printInfo() const;
-    void endInfo(Character* w,Character* l) const;
 
-    int playerTurn();
-    int enemyTurn();
-    
+    Combat(Character* player, Character* e);
+
+    void printInfo() const;
+    void endInfo(Character* p, Character* e) const;
+
+    // each turn returns the skill the player or the enemy picks for that turn
+    Skill& playerChoice();
+    Skill& enemyChoice();
+
     bool combatLoop();
 };
 

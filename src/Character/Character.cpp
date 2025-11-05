@@ -28,6 +28,7 @@ float Character::getResistance() const { return stats.resistance; }
 bool Character::getIsMagic() const { return isMagic; }
 bool Character::getIsAlive() const { return isAlive; }
 bool Character::getIsDefending() const { return isDefending; }
+vector<Skill*> Character::getSkills() const { return skills; }
 
 // setters
 void Character::setHp(float h) { stats.hp = h; }
@@ -91,4 +92,10 @@ void Character::printInfo() const {
     cout << "ATK: " << stats.attack << endl;
     cout << "DEF: " << stats.defense << endl;
     cout << "STATUS: " << (isAlive ? "Alive" : "Dead") << endl;
+}
+
+void Character::printSkills() const {
+    for (int i = 0; i < skills.size(); i++) {
+        cout << i + 1 << ") " << skills[i] << endl;
+    }
 }

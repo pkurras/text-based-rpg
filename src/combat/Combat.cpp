@@ -23,7 +23,32 @@ void Combat::endInfo(Character* w,Character* l) const {
 }
 
 // player turn
-int Combat::playerTurn() {
+Skill& Combat::playerChoice() {
+    // temp variable for vector or skills
+    vector<Skill*> skillList = player->getSkills();
+    Skill* pickedSkill;
+
+    // prompt for player's choice
+    while(true) {
+        // print player's turn
+        cout << player->getName() << "'s Turn:\n";
+
+        // print out useable skills
+        player->printSkills();
+
+        // get player choice
+        int choice;
+
+        if (choice > 0 && choice <= skillList.size()) { // valid choice | return picked skill
+            pickedSkill = skillList[choice];
+            return *pickedSkill;
+        }
+
+        cout << "Invalid Option.\n";
+    }
+
+    
+    /*
     int choice;
 
     while(true) {
@@ -38,14 +63,14 @@ int Combat::playerTurn() {
 
         cout << "Invalid Option." << endl;
     }
+    */
 }
 
 // enemy turn
-int Combat::enemyTurn() {
-    int r = rand() % 100;
+Skill& Combat::enemyChoice() {
 
-    if(r > 35) { return 1; } // attack
-    else { enemy->defend(); return 2; } // defend
+    // TODO
+
 }
 
 // combat loop
@@ -61,10 +86,12 @@ bool Combat::combatLoop() {
     player->printInfo();
     enemy->printInfo();
 
+
+    /*
     while(player->getIsAlive() && enemy->getIsAlive()) {
         printInfo();
-        int playerChoice = playerTurn();
-        int enemyChoice = enemyTurn();
+        int playerChoice = playerChoice();
+        int enemyChoice = enemyChoice();
 
         // if (playerChoice == 1) { player->attack(*enemy); }
         // if (enemyChoice == 1) { enemy->attack(*player); }
@@ -89,4 +116,5 @@ bool Combat::combatLoop() {
         endInfo(enemy,player);
         return false; 
     }
+    */
 }

@@ -45,6 +45,7 @@ public:
     bool getIsMagic() const;
     bool getIsAlive() const;
     bool getIsDefending() const;
+    vector<Skill*> getSkills() const;
 
     // setters
     void setHp(float h);
@@ -82,6 +83,8 @@ public:
 
     // print info
     void printInfo() const;
+
+    void printSkills() const;
 };
 
 #endif
