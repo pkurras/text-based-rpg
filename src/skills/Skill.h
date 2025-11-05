@@ -1,8 +1,7 @@
 #ifndef SKILL_H
 #define SKILL_H
 
-#include "Skills.hpp"
-#include "Character.h"
+class Character;
 
 class Skill {
 protected:

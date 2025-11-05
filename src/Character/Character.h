@@ -5,8 +5,8 @@
 #include <vector>
 #include "Formulas.hpp"
 #include "Skill.h"
-#include "Skills.hpp"
-#include "Stat.hpp"
+#include "Skills.h"
+#include "Stat.h"
 
 using namespace std;
 
@@ -26,7 +26,7 @@ public:
     // Constructor / Destructor
     Character(string n,int l);
 
-    virtual ~Character();
+    virtual ~Character() = default;
 
     // getters
     const string& getName() const;
@@ -55,7 +55,6 @@ public:
     void setResistance(float r);
     void setIsAlive(bool b);
     void setIsDefending(bool b);
-    void setResource(float r);
 
     // set stats FOR LEVELING
     virtual void setHpStat() = 0;

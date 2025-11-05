@@ -12,7 +12,7 @@ Mage::Mage(const string& n,int level)
         stats.resistance = mageResistance(level);
     };
 
-void Mage::setHpStat() { stats.maxHp = mageHp(stats.level); stats.maxHp = mageHp(stats.level); }
+void Mage::setHpStat() { stats.maxHp = mageHp(stats.level); stats.hp = mageHp(stats.level); }
 
 void Mage::setResourceStat() { stats.maxResource = mageResource(stats.level); stats.resource = mageResource(stats.level); }
 

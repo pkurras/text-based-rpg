@@ -1,15 +1,15 @@
 #include "Character.h"
+#include "Skills.h"
+#include "BuffDef.h"
+#include "DamageHp.h"
 #include <iostream>
 
 // constructor
 Character::Character(string n, int l) : name(n) { 
-    stats.level = l; 
-    skills.emplace_back(basicAttack);
-    skills.emplace_back(basicDefend);
+    stats.level = l;
+    skills.emplace_back(&BasicAttack);
+    skills.emplace_back(&BasicDefend);
 }
-
-// destructor
-Character::~Character() {};
 
 // getters
 const string& Character::getName() const { return name; }

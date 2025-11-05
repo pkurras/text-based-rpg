@@ -3,11 +3,13 @@
 
 #include "Skill.h"
 
+class Character;
+
 class BuffDef : public Skill {
 public:
     BuffDef(bool magic, float p, float c);
 
-    void useSkill(Character& source, Character& taget) override;
+    void useSkill(Character& source, Character& target) override;
 };
 
 #endif

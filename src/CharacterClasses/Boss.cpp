@@ -12,7 +12,7 @@ Boss::Boss(const string& n,int level)
         stats.resistance = bossResistance(level);
     };
 
-void Boss::setHpStat() { stats.maxHp = bossHp(stats.level); stats.maxHp = bossHp(stats.level); }
+void Boss::setHpStat() { stats.maxHp = bossHp(stats.level); stats.hp = bossHp(stats.level); }
 
 void Boss::setResourceStat() { stats.maxResource = bossResource(stats.level); stats.resource = bossResource(stats.level); }
 

@@ -12,7 +12,7 @@ Healer::Healer(const string& n,int level)
         stats.resistance = healerResistance(level);
     };
 
-void Healer::setHpStat() { stats.maxHp = healerHp(stats.level); stats.maxHp = healerHp(stats.level); }
+void Healer::setHpStat() { stats.maxHp = healerHp(stats.level); stats.hp = healerHp(stats.level); }
 
 void Healer::setResourceStat() { stats.maxResource = healerResource(stats.level); stats.resource = healerResource(stats.level); }
 

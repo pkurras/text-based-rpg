@@ -12,7 +12,7 @@ Enemy::Enemy(const string& n,int level)
         stats.resistance = enemyResistance(level);
     };
 
-void Enemy::setHpStat() { stats.maxHp = enemyHp(stats.level); stats.maxHp = enemyHp(stats.level); }
+void Enemy::setHpStat() { stats.maxHp = enemyHp(stats.level); stats.hp = enemyHp(stats.level); }
 
 void Enemy::setResourceStat() { stats.maxResource = enemyResource(stats.level); stats.resource = enemyResource(stats.level); }
 

@@ -3,6 +3,8 @@
 
 #include "Skill.h"
 
+class Character;
+
 class DamageHp : public Skill {
 public:
     DamageHp(bool magic, float p, float c);

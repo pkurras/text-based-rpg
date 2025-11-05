@@ -12,7 +12,7 @@ Warrior::Warrior(const string& n,int level)
         stats.resistance = warriorResistance(level);
     };
 
-void Warrior::setHpStat() { stats.maxHp = warriorHp(stats.level); stats.maxHp = warriorHp(stats.level); }
+void Warrior::setHpStat() { stats.maxHp = warriorHp(stats.level); stats.hp = warriorHp(stats.level); }
 
 void Warrior::setResourceStat() { stats.maxResource = warriorResource(stats.level); stats.resource = warriorResource(stats.level); }
 

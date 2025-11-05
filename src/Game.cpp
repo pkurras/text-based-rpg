@@ -10,6 +10,7 @@ Game::Game(const string& n)
 }
 
 Game::~Game() {
+    delete player;
     for (int i = 0; i < arena.size(); i++) { delete arena[i]; }
 }
 

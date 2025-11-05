@@ -12,7 +12,7 @@ Archer::Archer(const string& n,int level)
         stats.resistance = archerResistance(level);
     };
 
-void Archer::setHpStat() { stats.maxHp = archerHp(stats.level); stats.maxHp = archerHp(stats.level); }
+void Archer::setHpStat() { stats.maxHp = archerHp(stats.level); stats.hp = archerHp(stats.level); }
 
 void Archer::setResourceStat() { stats.maxResource = archerResource(stats.level); stats.resource = archerResource(stats.level); }
 
