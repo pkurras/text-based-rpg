@@ -1,22 +1,24 @@
 #ifndef COMBAT_H
 #define COMBAT_H
 
-#include "character/Character.h"
+#include "Character/Character.h"
+#include "Party.h"
 #include <iostream>
 
 struct Combat {
-    Character* player;
-    Character* enemy;
+    Party playerParty;
+    Party enemyParty;
     int turnCount;
 
-    Combat(Character* player, Character* e);
+    Combat(Party player, Party enemy);
 
-    void printInfo() const;
-    void endInfo(Character* p, Character* e) const;
+    void printTurn() const;
+    void endInfo(Party player, Party enemy) const;
+    void battleStart() const;
 
     // each turn returns the skill the player or the enemy picks for that turn
-    Skill& playerChoice();
-    Skill& enemyChoice();
+    Skill* playerChoice();
+    Skill* enemyChoice();
 
     bool combatLoop();
 };

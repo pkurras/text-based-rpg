@@ -62,7 +62,7 @@ void Character::defend() {
 }
 
 // reset
-void Character::reset() {
+void Character::resetIsDefending() {
     if (isDefending) { isDefending = false; }
 }
 

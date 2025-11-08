@@ -75,7 +75,7 @@ public:
     virtual void defend();
 
     // reset
-    void reset();
+    void resetIsDefending();
 
     void canLevel(Character& target);
 

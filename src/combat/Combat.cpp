@@ -3,38 +3,45 @@
 
 
 // constructor
-Combat::Combat(Character* p,Character* e)
-    : player(p), enemy(e), turnCount(1) {}
+Combat::Combat(vector<Character*> player, vector<Character*> enemy)
+    : playerParty(player), enemyParty(enemy), turnCount(1) {}
 
 // print info
-void Combat::printInfo() const {
+void Combat::printTurn() const {
     cout << "===== Turn: " << turnCount << " =====\n";
 }
 
-void Combat::endInfo(Character* w,Character* l) const {
-    cout << l->getName() << " HAS FALLEN!" << endl;
+void Combat::endInfo(vector<Character*> winners,vector<Character*> losers) const {
+    // cout << losers->getName() << " HAS FALLEN!" << endl;
     cout << "====================================" << endl;
     cout << "BATTLE HAS ENDED!" << endl;
-    cout << "WINNER: " << w->getName() << endl;
+    cout << "WINNERS: " << winners->getName() << endl;
     cout << "====================================" << endl << endl;
 
     // TODO - Print XP, LVL, etc. 
 
 }
 
+void Combat::battleStart() const {
+    cout << "====================================" << endl;
+    cout << "BATTLE HAS BEGUN!" << endl;
+    cout << player->getName() << " VS " << enemy->getName() << endl;
+    cout << "====================================" << endl << endl;
+}
+
 // player turn
-Skill& Combat::playerChoice() {
+Skill* Combat::playerChoice(Character* partyCharacter) {
     // temp variable for vector or skills
-    vector<Skill*> skillList = player->getSkills();
+    vector<Skill*> skillList = partyCharacter->getSkills();
     Skill* pickedSkill;
 
     // prompt for player's choice
     while(true) {
         // print player's turn
-        cout << player->getName() << "'s Turn:\n";
+        cout << partyCharacter->getName() << "'s Turn:\n";
 
         // print out useable skills
-        player->printSkills();
+        partyCharacter->printSkills();
 
         // get player choice
         int choice;
@@ -42,42 +49,24 @@ Skill& Combat::playerChoice() {
         if (choice > 0 && choice <= skillList.size()) { // valid choice | return picked skill
             pickedSkill = skillList[choice - 1]; // offset by 1
 
-            if(pickedSkill->canUse(*player)) return *pickedSkill;
-            else { pickedSkill->cantUse(*player); }
+            if(pickedSkill->canUse(partyCharacter)) return pickedSkill;
+            else { pickedSkill->cantUse(partyCharacter); }
         }
         else { cout << "Invalid Option.\n"; }
     }
-
-    
-    /*
-    int choice;
-
-    while(true) {
-        cout << player->getName() << "'s turn:" << endl;
-        cout << "1. Attack" << endl;
-        cout << "2. Defend" << endl;
-
-        cin >> choice;
-
-        if(choice == 1) { return 1; }
-        if(choice == 2) { player->defend(); return 2; }
-
-        cout << "Invalid Option." << endl;
-    }
-    */
 }
 
 // enemy turn
-Skill& Combat::enemyChoice() {
-    vector<Skill*> skillList;
+Skill* Combat::enemyChoice(Character* partyCharacter) {
+    vector<Skill*> skillList = partyCharacter->getSkills();
     Skill* pickedSkill;
 
+    // TODO - Make better (more sophisticated)
     while(true) {
         int choice = (1 + rand() % 100) * skillList.size() / 100; // generate choice randomly
         pickedSkill = skillList[choice];
-        if(pickedSkill->cantUse(*enemy)) {} // error?
+        if(pickedSkill->canUse(partyCharacter)) return pickedSkill;
     }
-
 }
 
 // combat loop
@@ -85,13 +74,16 @@ bool Combat::combatLoop() {
     Character* winner;
     Character* loser;
 
-    cout << "====================================" << endl;
-    cout << "BATTLE HAS BEGUN!" << endl;
-    cout << player->getName() << " VS " << enemy->getName() << endl;
-    cout << "====================================" << endl << endl;
+    battleStart();
 
     player->printInfo();
     enemy->printInfo();
+
+    while(player->getIsAlive() && enemy->getIsAlive()) {
+        printTurn();
+        
+        
+    }
 
 
     /*
