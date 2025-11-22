@@ -1,8 +1,8 @@
 #ifndef COMBAT_H
 #define COMBAT_H
 
-#include "Character/Character.h"
-#include "party/Party.h"
+#include "../character/Character.h"
+#include "../party/Party.h"
 #include "Action.h"
 #include <iostream>
 

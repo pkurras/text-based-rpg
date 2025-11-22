@@ -1,7 +1,7 @@
 #ifndef PARTY_H
 #define PARTY_H
 
-#include "character/Character.h"
+#include "../character/Character.h"
 #include <iostream>
 
 class Party {

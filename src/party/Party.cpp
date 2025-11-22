@@ -1,4 +1,4 @@
-#include "party.h"
+#include "Party.h"
 
 Party::Party(vector<Character*> members)
     : party(members) {}

@@ -70,6 +70,7 @@ Character* Combat::getPlayerTarget(Character* source, Skill* skill) {
         if(choice > 0 && choice <= validTargets.size()) {
             return validTargets[choice - 1];
         }
+        else { cout << "Invalid Option.\n"; }
     }
 }
 
@@ -87,8 +88,11 @@ Skill* Combat::getPlayerSkill(Character* source) {
         // print out useable skills
         source->printSkills();
 
+        cout << ">";
+
         // get player choice
         int choice;
+        cin >> choice;
 
         if (choice > 0 && choice <= skillList.size()) { // valid choice | return picked skill
             pickedSkill = skillList[choice - 1]; // offset by 1
@@ -103,6 +107,7 @@ Skill* Combat::getPlayerSkill(Character* source) {
 Character* Combat::getEnemyTarget(Character* source, Skill* skill) {
     getValidTargets(source,skill);
 
+    // TODO - Make more sophisticated
     while(true) {
         int choice = (rand() % 100) * validTargets.size() / 100; // generate choice randomly
         return validTargets[choice];
@@ -134,16 +139,20 @@ void Combat::performAction(Character* source, Character* target, Skill* skill) {
 }
 
 void Combat::processTurn(Party player, Party enemy) {
+    // action queue
     queue<Action> actionQueue;
 
-    // reset or decrement status effect for player party
+    // PLAYER MOVE
+    // TODO - reset or decrement status effect for player party
 
+    // get choice from each player party member
     for (int i = 0; i < player.getPartySize(); i++ ) {
         Skill* skill = getPlayerSkill(player[i]);
         Character* target = getPlayerTarget(player[i],skill);
         actionQueue.push(Action(player[i],target,skill));
     }
 
+    // perform actions
     for (int i = 0; actionQueue.empty(); i++) {
         performAction(
             actionQueue.front().source,
@@ -153,14 +162,17 @@ void Combat::processTurn(Party player, Party enemy) {
         actionQueue.pop();
     }
 
-    // reset or decrement status effect for enemy party
+    // ENEMY MOVE
+    // TODO - reset or decrement status effect for enemy party
 
+    // get choice from each player party member
     for (int i = 0; i < enemy.getPartySize(); i++) {
         Skill* skill = getEnemySkill(enemy[i]);
         Character* target = getEnemyTarget(enemy[i],skill);
         actionQueue.push(Action(enemy[i],target,skill));
     }
 
+    // perform actions
     for (int i = 0; actionQueue.empty(); i++) {
         performAction(
             actionQueue.front().source,

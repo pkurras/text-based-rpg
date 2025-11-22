@@ -3,9 +3,9 @@
 
 #include <string>
 #include <vector>
-#include "Formulas.hpp"
-#include "skills/Skill.h"
-#include "skills/Skills.h"
+#include "../Formulas.hpp"
+#include "../skills/Skill.h"
+#include "../skills/SkillList.h"
 #include "Stat.h"
 
 using namespace std;

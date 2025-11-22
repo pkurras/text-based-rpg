@@ -1,4 +1,4 @@
-#include "Skills.h"
+#include "SkillList.h"
 
 #include "DamageHp.h"
 #include "BuffDef.h"

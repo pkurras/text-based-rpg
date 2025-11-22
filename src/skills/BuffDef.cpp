@@ -1,5 +1,5 @@
 #include "BuffDef.h"
-#include "Character/Character.h"
+#include "../character/Character.h"
 
 BuffDef::BuffDef(bool magic, float p, float c, TargetType tt)
     : Skill(magic,p,c,tt) {}
