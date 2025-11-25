@@ -7,20 +7,6 @@ TARGET := text_rpg.exe
 # Explicitly list each .cpp file (guaranteed to work)
 SRCS := \
     src/main.cpp \
-    src/Game.cpp \
-    src/character/character.cpp \
-    src/combat/Combat.cpp \
-    src/combat/Action.cpp \
-    src/skills/Skill.cpp \
-    src/skills/DamageHp.cpp \
-    src/skills/BuffDef.cpp \
-    src/skills/Skills.cpp \
-    src/character_classes/Warrior.cpp \
-    src/character_classes/Mage.cpp \
-    src/character_classes/Healer.cpp \
-    src/character_classes/Archer.cpp \
-    src/character_classes/Enemy.cpp \
-    src/character_classes/Boss.cpp \
 
 OBJS := $(SRCS:.cpp=.o)
 

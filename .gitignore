@@ -6,3 +6,12 @@
 
 # ignore the compiled binary, also to reduce clutter
 ./text_rpg.exe
+
+# ingore visual studio files
+*.sln
+*.vcxproj
+*.user
+.vs
+
+# ignore intermediate dirs
+./build
