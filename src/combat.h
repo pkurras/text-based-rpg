@@ -31,4 +31,4 @@ class CombatSystem
     }
 };
 
-#endif COMBAT_H
+#endif // COMBAT_H

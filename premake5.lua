@@ -82,4 +82,4 @@ project("game")
     includedirs { "src/" }
     libdirs { "libs" }
     defines { }
-    links { }
+    links { "Bcrypt.lib" }
