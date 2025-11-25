@@ -7,17 +7,17 @@
 #include "character.h"
 #include "helperutils.h"
 
-class Combat
+class CombatSystem
 {
     public: static void Attack(Character& a, Character& b)
     {
-        action_cb_t attack_action;
-        if ((attack_action = a.GetAction(Character::CharacterActions::Attack)))
+        formula_cb_t attack_action;
+        if ((attack_action = a.GetAction(Character::CharacterFormulas::Attack)))
         {
             printf("Combat between %s and %s\n", a.GetName().c_str(), b.GetName().c_str());
 
-            float damage = attack_action(*a.GetPropertySet().get<int>("level"));
-            Range<float>* health = b.GetPropertySet().get<Range<float>>("health");
+            float damage = attack_action(*a.GetPropertySet().get<int>("lvl"));
+            Range<float>* health = b.GetPropertySet().get<Range<float>>("hp");
             if (!health)
             {
                 printf("The attack had no effect on the victim.\n");

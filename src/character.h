@@ -7,23 +7,27 @@
 // INTERNAL INCLUDES
 #include "propertyset.h"
 
-typedef float(*action_cb_t)(int level);
+typedef float(*formula_cb_t)(int level);
 
 class Character
 {
 public:
 
-    enum class CharacterActions
+    enum class CharacterFormulas
     {
+        NextLevel,
+        DropChance,
+        DropBossChance,
         Attack,
-        Heal,
+        Defense,
+        Resistance,
         MAX
     };
 
-    Character(std::string& name) :
+    Character(const char* name) :
         name(name)
     {
-        actions.resize(static_cast<size_t>(CharacterActions::MAX));
+        actions.resize(static_cast<size_t>(CharacterFormulas::MAX));
     }
     ~Character() {}
 
@@ -35,14 +39,14 @@ public:
     {
         return stats;
     }
-    void SetAction(CharacterActions slot, action_cb_t action)
+    void SetFormula(CharacterFormulas slot, formula_cb_t formula)
     {
-        actions[static_cast<size_t>(slot)] = action;
+        actions[static_cast<size_t>(slot)] = formula;
     }
-    action_cb_t GetAction(CharacterActions slot)
+    formula_cb_t GetAction(CharacterFormulas slot)
     {
         size_t idx = static_cast<size_t>(slot);
-        if (idx >= static_cast<size_t>(CharacterActions::MAX))
+        if (idx >= static_cast<size_t>(CharacterFormulas::MAX))
         {
             return nullptr;
         }
@@ -55,7 +59,7 @@ private:
     std::string name;
     PropertySet stats;
 
-    std::vector<action_cb_t> actions;
+    std::vector<formula_cb_t> actions;
 
 };
 
