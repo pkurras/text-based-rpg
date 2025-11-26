@@ -2,6 +2,7 @@
 // INTERNAL INCLUDES
 #include "gameinstance.h"
 
+// ********************************************************************************
 int main(int argc, char** argv)
 {
     GameInstance game;
@@ -11,3 +12,4 @@ int main(int argc, char** argv)
 
     return 0;
 }
+// ********************************************************************************

@@ -12,6 +12,7 @@
 // INTERNAL INCLUDES
 #include "platform/random.h"
 
+// ********************************************************************************
 size_t Random::GetTrueRandomNumber()
 {
 #ifdef _WIN32
@@ -31,3 +32,4 @@ size_t Random::GetTrueRandomNumber()
     return value;
 #endif
 }
+// ********************************************************************************

@@ -13,7 +13,7 @@ class Character
 {
 public:
 
-    enum class CharacterFormulas
+    enum class Formula
     {
         NextLevel,
         DropChance,
@@ -29,8 +29,8 @@ public:
 
     std::string& GetName(void);
     PropertySet& GetPropertySet(void);
-    void SetFormula(CharacterFormulas slot, formula_cb_t formula);
-    formula_cb_t GetAction(CharacterFormulas slot);
+    void SetFormula(Formula slot, formula_cb_t formula);
+    formula_cb_t GetAction(Formula slot);
 
 private:
 

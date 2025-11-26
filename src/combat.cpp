@@ -6,7 +6,7 @@
 void CombatSystem::Attack(Character& a, Character& b)
 {
     formula_cb_t attack_action;
-    if ((attack_action = a.GetAction(Character::CharacterFormulas::Attack)))
+    if ((attack_action = a.GetAction(Character::Formula::Attack)))
     {
         std::printf("Combat between %s and %s\n", a.GetName().c_str(), b.GetName().c_str());
 
