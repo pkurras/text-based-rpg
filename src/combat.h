@@ -6,6 +6,7 @@
 // INTERNAL INCLUDES
 #include "character.h"
 #include "helperutils.h"
+#include "platform/console.h"
 
 class CombatSystem
 {
@@ -14,19 +15,27 @@ class CombatSystem
         formula_cb_t attack_action;
         if ((attack_action = a.GetAction(Character::CharacterFormulas::Attack)))
         {
-            printf("Combat between %s and %s\n", a.GetName().c_str(), b.GetName().c_str());
+            std::printf("Combat between %s and %s\n", a.GetName().c_str(), b.GetName().c_str());
 
             float damage = attack_action(*a.GetPropertySet().get<int>("lvl"));
             Range<float>* health = b.GetPropertySet().get<Range<float>>("hp");
             if (!health)
             {
-                printf("The attack had no effect on the victim.\n");
+                std::printf("The attack had no effect on the victim.\n");
             }
 
+            float prev_hp = health->value;
+
+            // TODO: use defense and other factors like mt_rand64 to determine damage and final hp
             health->value = Clamp(health->min, health->max, health->value - damage);
 
-            printf("%s did %.2f damage to %s.\n", a.GetName().c_str(), damage, b.GetName().c_str());
-            printf("%s now has %.2f health.\n", b.GetName().c_str(), health->value);
+            Console::SetColor(Console::Color::Default);
+            std::printf("%s did ", a.GetName().c_str());
+            Console::SetColor(Console::Color::BrightRed);
+            std::printf("%.2f", prev_hp - health->value);
+            Console::SetColor(Console::Color::Default);
+            std::printf(" damage to %s.\n", b.GetName().c_str());
+            std::printf("%s now has %.2f health.\n", b.GetName().c_str(), health->value);
         }
     }
 };

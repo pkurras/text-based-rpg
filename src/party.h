@@ -97,11 +97,11 @@ public:
 
 	virtual void Print() override
 	{
-		printf("Party Members:\n");
+		std::printf("Party Members:\n");
 		for (auto& m : this->members)
 		{
 			if (!m) continue;
-			printf(" %s\n", m->GetName().c_str());
+			std::printf(" %s\n", m->GetName().c_str());
 		}
 	}
 
