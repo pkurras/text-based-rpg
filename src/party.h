@@ -24,6 +24,7 @@ public:
 
 	size_t GetMaxMemberCount();
 	void AddMember(Character* character);
+	void RemoveMember(Character* character);
 
 	virtual void Print() override;
 

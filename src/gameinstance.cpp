@@ -11,12 +11,12 @@
 #include "platform/random.h"
 
 // ********************************************************************************
-void GameInstance::Init()
+void GameInstance::Init() const
 {
     mt_seed(Random::GetTrueRandomNumber());
 }
 // ********************************************************************************
-void GameInstance::Run()
+void GameInstance::Exec() const
 {
     std::unique_ptr<Character> A{ Archetype::CreateWarrior("Warrior") };
     std::unique_ptr<Character> B{ Archetype::CreateMage("Mage") };
@@ -32,20 +32,28 @@ void GameInstance::Run()
     bool running = true;
     while (running)
     {
-        std::printf("Choose an option:\n");
+        std::printf("\nChoose an option:\n");
         for (int i = 0; i < Option::OPT_MAX-1; i++)
         {
             std::printf("%i. %s\n", i+1, OptionNames[i]);
         }
+        std::printf("\n");
 
         std::string option;
         std::getline(std::cin, option);
+
+        Console::Clear();
 
         switch (std::atoi(option.c_str()))
         {
             case Option::OPT_FIGHT:
             {
                 CombatSystem::Attack(*A, *B);
+                break;
+            }
+            case Option::OPT_PARTY_INFO:
+            {
+                party.Print();
                 break;
             }
             case Option::OPT_QUIT:
@@ -68,7 +76,7 @@ void GameInstance::Run()
     Console::SetColor(Console::Color::Default);
 }
 // ********************************************************************************
-void GameInstance::Quit()
+void GameInstance::Quit() const
 {
 
 }

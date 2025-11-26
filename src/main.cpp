@@ -7,7 +7,7 @@ int main(int argc, char** argv)
 {
     GameInstance game;
     game.Init();
-    game.Run();
+    game.Exec();
     game.Quit();
 
     return 0;

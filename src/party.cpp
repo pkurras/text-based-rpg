@@ -88,6 +88,15 @@ void Party::AddMember(Character* character)
 	this->members.emplace_back(character);
 }
 // ********************************************************************************
+void Party::RemoveMember(Character* character)
+{
+	auto member = std::find(this->members.begin(), this->members.end(), character);
+
+	if (!*member) return;
+
+	this->members.erase(member);
+}
+// ********************************************************************************
 void Party::Print()
 {
 	std::printf("Party Members:\n");

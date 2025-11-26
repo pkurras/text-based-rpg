@@ -17,6 +17,14 @@ void CombatSystem::Attack(Character& a, Character& b)
             std::printf("The attack had no effect on the victim.\n");
         }
 
+        if (health->value <= 0)
+        {
+            Console::SetColor(Console::Color::BrightRed);
+            std::printf("%s has died already.", b.GetName().c_str());
+            Console::SetColor(Console::Color::Default);
+            return;
+        }
+
         float prev_hp = health->value;
 
         // TODO: use defense and other factors like mt_rand64 to determine damage and final hp
