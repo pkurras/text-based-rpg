@@ -24,41 +24,18 @@ public:
         MAX
     };
 
-    Character(const char* name) :
-        name(name)
-    {
-        actions.resize(static_cast<size_t>(CharacterFormulas::MAX));
-    }
-    ~Character() {}
+    Character(const char* name);
+    ~Character();
 
-    std::string& GetName(void)
-    {
-        return name;
-    }
-    PropertySet& GetPropertySet(void)
-    {
-        return stats;
-    }
-    void SetFormula(CharacterFormulas slot, formula_cb_t formula)
-    {
-        actions[static_cast<size_t>(slot)] = formula;
-    }
-    formula_cb_t GetAction(CharacterFormulas slot)
-    {
-        size_t idx = static_cast<size_t>(slot);
-        if (idx >= static_cast<size_t>(CharacterFormulas::MAX))
-        {
-            return nullptr;
-        }
-
-        return actions[idx];
-    }
+    std::string& GetName(void);
+    PropertySet& GetPropertySet(void);
+    void SetFormula(CharacterFormulas slot, formula_cb_t formula);
+    formula_cb_t GetAction(CharacterFormulas slot);
 
 private:
 
     std::string name;
     PropertySet stats;
-
     std::vector<formula_cb_t> actions;
 
 };

@@ -13,97 +13,19 @@ class Party : public PrintInfo
 {
 public:
 
-	Party(size_t max_size)
-	{
-		this->members.resize(max_size);
-	}
-	~Party() { }
+	Party(size_t max_size);
+	~Party();
 
-	bool IsMember(const char* Name)
-	{
-		for (auto& m : this->members)
-		{
-			if (!m) continue;
+	bool IsMember(const char* Name);
+	bool IsMember(Character* character);
 
-			if (strcmp(m->GetName().c_str(), Name) == 0)
-			{
-				return true;
-			}
-		}
+	bool AllMembersAlive();
+	bool IsAlive(Character* character);
 
-		return false;
-	}
-	bool IsMember(Character* character)
-	{
-		for (auto& m : this->members)
-		{
-			if (!m) continue;
+	size_t GetMaxMemberCount();
+	void AddMember(Character* character);
 
-			if (strcmp(m->GetName().c_str(), character->GetName().c_str()) == 0)
-			{
-				return true;
-			}
-		}
-
-		return false;
-	}
-
-	bool AllMembersAlive()
-	{
-		for (auto& m : this->members)
-		{
-			if (!m) continue;
-
-			Range<float>* range = m->GetPropertySet().get<Range<float>>("hp");
-
-			if (range->value <= 0)
-				return false;
-		}
-		
-		return true;
-	}
-
-	size_t GetMaxMemberCount()
-	{
-		return this->members.capacity();
-	}
-
-	bool IsAlive(Character* character)
-	{
-		for (auto& m : this->members)
-		{
-			if (!m) continue;
-
-			std::string& name = m->GetName();
-			if (strcmp(character->GetName().c_str(), name.c_str()) == 0)
-			{
-				Range<float>* range = character->GetPropertySet().get<Range<float>>("hp");
-				if (!range)
-				{
-					return false;
-				}
-
-				return range->value > 0;
-			}
-		}
-
-		return false;
-	}
-
-	void AddMember(Character* character)
-	{
-		this->members.emplace_back(character);
-	}
-
-	virtual void Print() override
-	{
-		std::printf("Party Members:\n");
-		for (auto& m : this->members)
-		{
-			if (!m) continue;
-			std::printf(" %s\n", m->GetName().c_str());
-		}
-	}
+	virtual void Print() override;
 
 private:
 

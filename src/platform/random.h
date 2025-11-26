@@ -14,31 +14,10 @@
 #endif
 // INTERNAL INCLUDES
 
-class Platform
+class Random
 {
 public:
-#ifdef _WIN32
-    static size_t GetTrueRandomNumber()
-    {
-        size_t value = 0;
-        BCryptGenRandom(
-            NULL,
-            (PUCHAR)&value,
-            sizeof(value),
-            BCRYPT_USE_SYSTEM_PREFERRED_RNG
-        );
-        return value;
-    }
-#else
-    static size_t GetTrueRandomNumber()
-    {
-        size_t value;
-        int fd = open("/dev/urandom", O_RDONLY);
-        read(fd, &value, sizeof(value));
-        close(fd);
-        return value;
-    }
-#endif
+    static size_t GetTrueRandomNumber();
 };
 
 #endif // PLATFORM_RANDOM_H

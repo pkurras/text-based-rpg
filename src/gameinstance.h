@@ -26,7 +26,7 @@ public:
 
     void Init()
     {
-        mt_seed(Platform::GetTrueRandomNumber());
+        mt_seed(Random::GetTrueRandomNumber());
     }
     void Run()
     {
